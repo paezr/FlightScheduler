@@ -1,0 +1,230 @@
+function ShowControls(ddl) {
+    if (ddl.selectedIndex == 1) {//one way
+        document.getElementById("flight1").style.display = "block";
+
+        document.getElementById("divReturnDate").style.display = "none";
+        document.getElementById("btnaddFlight").style.display = "none";
+        document.getElementById("flight2").style.display = "none";
+        document.getElementById("flight3").style.display = "none";
+        document.getElementById("flight4").style.display = "none";
+        document.getElementById("flight5").style.display = "none";
+        document.getElementById("flight6").style.display = "none";
+    }
+    else if (ddl.selectedIndex == 2) {// round trip
+        document.getElementById("flight1").style.display = "block";
+        document.getElementById("divReturnDate").style.display = "block";
+
+        document.getElementById("btnaddFlight").style.display = "none";
+        document.getElementById("flight2").style.display = "none";
+        document.getElementById("flight3").style.display = "none";
+        document.getElementById("flight4").style.display = "none";
+        document.getElementById("flight5").style.display = "none";
+        document.getElementById("flight6").style.display = "none";
+    }
+    else if (ddl.selectedIndex == 3) {// multi city
+        document.getElementById("flight1").style.display = "block";
+        document.getElementById("btnaddFlight").style.display = "block";
+        document.getElementById("flight2").style.display = "block";
+
+        document.getElementById("divReturnDate").style.display = "none";
+    }
+
+}
+
+function ClearTextBox(txt) {
+    if (txt.value == "FROM" || txt.value == "TO") {
+        txt.value = "";
+        txt.style.color = "black";
+        txt.style.fontStyle = "normal";
+    }
+}
+
+function RestoreFrom(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+}
+
+function RestoreTo(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "TO";
+        txt.style.color = "grey";
+    }
+}
+
+function ValidateDepartureDate1(txtDate) {
+    // has to be after today
+    var departureDate = String(txtDate.value);
+
+    var today = new Date();
+    var date = new Date(departureDate);
+
+    if (date < today) {
+        alert("departure date must be later than today");
+        return false;
+    }
+}
+
+function ValidateDepartureDate2(txtDate) {
+    var departureDate = String(txtDate.value);
+    var previousDepartureDate = String(document.getElementById("txtDepartureDate").value);
+
+    departureDate = new Date(departureDate);
+    previousDepartureDate = new Date(previousDepartureDate);
+
+    if (departureDate < previousDepartureDate) {
+        alert("departure date must be after previous departure date");
+        return false;
+    }
+}
+
+function ValidateDepartureDate3(txtDate) {
+    var departureDate = String(txtDate.value);
+    var previousDepartureDate = String(document.getElementById("txtDepartureDate2").value);
+
+    departureDate = new Date(departureDate);
+    previousDepartureDate = new Date(previousDepartureDate);
+
+    if (departureDate < previousDepartureDate) {
+        alert("departure date must be after previous departure date");
+        return false;
+    }
+}
+
+function ValidateDepartureDate4(txtDate) {
+    var departureDate = String(txtDate.value);
+    var previousDepartureDate = String(document.getElementById("txtDepartureDate3").value);
+
+    departureDate = new Date(departureDate);
+    previousDepartureDate = new Date(previousDepartureDate);
+
+    if (departureDate < previousDepartureDate) {
+        alert("departure date must be after previous departure date");
+        return false;
+    }
+}
+
+function ValidateDepartureDate5(txtDate) {
+    var departureDate = String(txtDate.value);
+    var previousDepartureDate = String(document.getElementById("txtDepartureDate4").value);
+
+    departureDate = new Date(departureDate);
+    previousDepartureDate = new Date(previousDepartureDate);
+
+    if (departureDate < previousDepartureDate) {
+        alert("departure date must be after previous departure date");
+        return false;
+    }
+}
+
+function ValidateDepartureDate6(txtDate) {
+    var departureDate = String(txtDate.value);
+    var previousDepartureDate = String(document.getElementById("txtDepartureDate5").value);
+
+    departureDate = new Date(departureDate);
+    previousDepartureDate = new Date(previousDepartureDate);
+
+    if (departureDate < previousDepartureDate) {
+        alert("departure date must be after previous departure date");
+        return false;
+    }
+}
+
+function ValidateReturnDate(txtDate) {
+    // return date must be after departure date
+    var returnDate = String(txtDate.value);
+    var departureDate = String(document.getElementById("txtDepartureDate").value);
+    returnDate = new Date(returnDate);
+    departureDate = new Date(departureDate);
+
+    if (departureDate > returnDate) {
+        alert("return date must be after departure date");
+        return false;
+    }
+}
+
+function fillTo1(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+    else {
+        document.getElementById("txtTo1").style.fontStyle = "normal";
+        document.getElementById("txtTo1").style.color = "black";
+        document.getElementById("txtTo1").value = txt.value;
+    }
+}
+
+function fillTo2(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+    else {
+        document.getElementById("txtTo2").style.fontStyle = "normal";
+        document.getElementById("txtTo2").style.color = "black";
+        document.getElementById("txtTo2").value = txt.value;
+    }
+}
+
+function fillTo3(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+    else {
+        document.getElementById("txtTo3").style.fontStyle = "normal";
+        document.getElementById("txtTo3").style.color = "black";
+        document.getElementById("txtTo3").value = txt.value;
+    }
+}
+
+function fillTo4(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+    else {
+        document.getElementById("txtTo4").style.fontStyle = "normal";
+        document.getElementById("txtTo4").style.color = "black";
+        document.getElementById("txtTo4").value = txt.value;
+    }
+}
+
+function fillTo5(txt) {
+    if (txt.value == "") {
+        txt.style.fontStyle = "italic";
+        txt.value = "FROM";
+        txt.style.color = "grey";
+    }
+    else {
+        document.getElementById("txtTo5").style.fontStyle = "normal";
+        document.getElementById("txtTo5").style.color = "black";
+        document.getElementById("txtTo5").value = txt.value;
+    }
+}
+
+function addFlight(btn) {
+    var flight3 = document.getElementById("flight3");
+    var flight4 = document.getElementById("flight4");
+    var flight5 = document.getElementById("flight5");
+    var flight6 = document.getElementById("flight6");
+    if (flight5.style.display == "block") {
+        flight6.style.display = "block";
+        document.getElementById("btnaddFlight").style.display = "none";
+    }
+    if (flight4.style.display == "block") {
+        flight5.style.display = "block";
+    }
+    if (flight3.style.display == "block") {
+        flight4.style.display = "block";
+    }
+    flight3.style.display = "block";
+}
