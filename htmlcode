@@ -1,0 +1,119 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Assignment4.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="StyleSheet1.css" rel="stylesheet" />
+    <script src="JavaScript.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="box1">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Flight Destination" Font-Overline="False" Font-Underline="True" Font-Bold="True" Font-Size="X-Large"></asp:Label>
+        </div>
+
+        <div>
+            <asp:DropDownList ID="ddlTrip" runat="server" onchange="ShowControls(this)">
+                <asp:ListItem>Please select an option</asp:ListItem>
+                <asp:ListItem>One-way</asp:ListItem>
+                <asp:ListItem>Round-trip</asp:ListItem>
+                <asp:ListItem>Multi-city</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+
+        <div id ="flight1" style="display:none" class="topMargin">
+        <div id="divFromTo1">
+            <asp:TextBox ID="txtFrom1" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreFrom(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo1" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="compareFromTo" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom1" ControlToCompare="txtTo1" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+        </div>
+        <div id="divDepartureDate">
+            <asp:Label ID="lblDeparture" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate" runat="server" TextMode="Date" oninput="ValidateDepartureDate1(this)"></asp:TextBox>
+        </div>
+        </div>
+
+
+        <div id="divReturnDate" style="display:none" >
+            <asp:Label ID="lblReturn" runat="server" Text="Return Date: "></asp:Label>
+            <asp:TextBox ID="txtReturnDate" runat="server" TextMode="Date" oninput="ValidateReturnDate(this)"></asp:TextBox>
+        </div>
+
+        <div id="flight2" style="display:none" class="topMargin">
+            <div id="divFromTo2" >
+            <asp:TextBox ID="txtFrom2" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="fillTo1(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo2" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom2" ControlToCompare="txtTo2" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+            </div>
+
+        <div id="divDepartureDate2" >
+            <asp:Label ID="Label5" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate2" runat="server" TextMode="Date" oninput="ValidateDepartureDate2(this)"></asp:TextBox>
+        </div>
+        </div>
+        
+        <div id="flight3" style="display:none" class="topMargin">
+            <div id="divFromTo3" >
+            <asp:TextBox ID="txtFrom3" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="fillTo2(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo3" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom3" ControlToCompare="txtTo3" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+        </div>
+
+        <div id="divDepartureDate3" >
+            <asp:Label ID="Label6" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate3" runat="server" TextMode="Date" oninput="ValidateDepartureDate3(this)"></asp:TextBox>
+        </div>
+        </div>
+        
+        <div id="flight4" style="display:none"class="topMargin">
+        <div id="divFromTo4">
+            <asp:TextBox ID="txtFrom4" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="fillTo3(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo4" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom4" ControlToCompare="txtTo4" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+
+        </div>
+
+        <div id="divDepartureDate4">
+            <asp:Label ID="Label7" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate4" runat="server" TextMode="Date" oninput="ValidateDepartureDate4(this)"></asp:TextBox>
+        </div>
+        </div>
+ 
+        <div id="flight5" style="display:none" class="topMargin">
+        <div id="divFromTo5">
+            <asp:TextBox ID="txtFrom5" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="fillTo4(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo5" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator5" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom5" ControlToCompare="txtTo5" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+
+        </div>
+
+        <div id="divDepartureDate5">
+            <asp:Label ID="Label8" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate5" runat="server" TextMode="Date" oninput="ValidateDepartureDate5(this)"></asp:TextBox>
+        </div>
+        </div>
+
+        <div id="flight6" style="display:none" class="topMargin">
+        <div id="divFromTo6">
+            <asp:TextBox ID="txtFrom6" runat="server" Text="FROM" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="fillTo5(this)"></asp:TextBox>
+            <asp:TextBox ID="txtTo6" runat="server" Text="TO" ForeColor="#999999" Font-Italic="True" onfocus="ClearTextBox(this)" onblur="RestoreTo(this)"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator6" runat="server" ErrorMessage="From and To cities cannot be the same" ControlToValidate="txtFrom6" ControlToCompare="txtTo6" Operator="NotEqual" CssClass="errorVal"></asp:CompareValidator>
+        </div>
+
+        <div id="divDepartureDate6">
+            <asp:Label ID="Label9" runat="server" Text="Departure Date: "></asp:Label>
+            <asp:TextBox ID="txtDepartureDate6" runat="server" TextMode="Date" oninput="ValidateDepartureDate6(this)"></asp:TextBox>
+        </div>
+        </div>
+
+        <div id="btnaddFlight" style="display:none">
+            <asp:Button ID="btnAddFlight" runat="server" Text="Add Another Flight" onclientclick="addFlight(this); return false;" />
+        </div>
+        </div>
+        
+    </form>
+</body>
+</html>
